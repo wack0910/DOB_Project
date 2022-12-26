@@ -30,8 +30,6 @@ module.exports = async function (fastify, opts) {
     }
   })
 
-
-
   // 판매자가 상품 등록
 	fastify.post('/products', async function (request, reply) {
     const products = this.mongo.db.collection('products')
@@ -40,9 +38,7 @@ module.exports = async function (fastify, opts) {
     const id = ObjectId(request.body.user_id)
     const user = await users.findOne({_id : id})
 
-    // request.headers.Authorization === 'aaa'
-
-    if(user) {
+    if(request.headers.Authorization === 'aaa') {
       if(user.user_type === 'Seller') {
         const result = await products.insertOne(request.body)
         reply
