@@ -6,6 +6,6 @@ module.exports = fp(async function (fastify, opts) {
   fastify.register(require('@fastify/mongodb'), {
     // options
     forceClose: true,
-    url: ''
+    url: process.env.CONNECTION_STRING
   })
 })
