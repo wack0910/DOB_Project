@@ -13,19 +13,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wack0910/devops-03-P1-TeamF.git"
+    "url": "git+https://github.com/pgrgrgrgr/devops-03-P1-TeamF.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wack0910/devops-03-P1-TeamF/issues"
+    "url": "https://github.com/pgrgrgrgr/devops-03-P1-TeamF/issues"
   },
-  "homepage": "https://github.com/wack0910/devops-03-P1-TeamF#readme",
+  "homepage": "https://github.com/pgrgrgrgr/devops-03-P1-TeamF#readme",
   "dependencies": {
-    "@fastify/autoload": "^5.6.0",
-    "@fastify/sensible": "^5.2.0",
-    "dotenv": "^16.0.3",
+    "@fastify/autoload": "^5.0.0",
+    "@fastify/cors": "^8.2.0",
+    "@fastify/mongodb": "^6.2.0",
+    "@fastify/sensible": "^5.0.0",
     "fastify": "^4.0.0",
     "fastify-cli": "^5.7.0",
     "fastify-plugin": "^4.0.0"
