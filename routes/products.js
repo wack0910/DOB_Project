@@ -16,10 +16,29 @@ module.exports = async function (fastify, opts) {
         .send(result)
     }
     // brand 일 때
-
+    if(request.headers.brand) {
+      const result = await products.find({category: request.headers.brand}).toArray()
+      reply
+        .code(201)
+        .header('Content-type', 'application/json')
+        .send(result)
+    }
     // price 일 때
-
+    if(request.headers.price) {
+      const result = await products.find({category: request.headers.price}).toArray()
+      reply
+        .code(201)
+        .header('Content-type', 'application/json')
+        .send(result)
+    }
     // name 일 때
+    if(request.headers.name) {
+      const result = await products.find({category: request.headers.name}).toArray()
+      reply
+        .code(201)
+        .header('Content-type', 'application/json')
+        .send(result)
+    }
 
     if(products) {
       const result = await products.find({}).toArray()
