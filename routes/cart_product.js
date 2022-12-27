@@ -33,13 +33,8 @@ module.exports = async function (fastify, opts) {
     const carts = this.mongo.db.collection('cart')
     const users = this.mongo.db.collection('users')
 
-    const id = ObjectId(request.body.user_id)
-
-    const cart = await carts.findOneAndUpdate({
-      _id: id,
-      product_id: request.body.product_id
-    }, {
-      count: request.body.count,
+    const cart = await carts.update({user_id: request.body.user_id, product_id: request.body.product_id}, {$set: {
+      count: request.body.count}
     }).then(result => {
       reply
         .code(200)
