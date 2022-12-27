@@ -17,7 +17,7 @@ module.exports = async function (fastify, opts) {
     }
     // brand 일 때
     if(request.headers.brand) {
-      const result = await products.find({category: request.headers.brand}).toArray()
+      const result = await products.find({brand: request.headers.brand}).toArray()
       reply
         .code(201)
         .header('Content-type', 'application/json')
@@ -25,7 +25,7 @@ module.exports = async function (fastify, opts) {
     }
     // price 일 때
     if(request.headers.price) {
-      const result = await products.find({category: request.headers.price}).toArray()
+      const result = await products.find({price: request.headers.price}).toArray()
       reply
         .code(201)
         .header('Content-type', 'application/json')
@@ -33,7 +33,7 @@ module.exports = async function (fastify, opts) {
     }
     // name 일 때
     if(request.headers.name) {
-      const result = await products.find({category: request.headers.name}).toArray()
+      const result = await products.find({name: request.headers.name}).toArray()
       reply
         .code(201)
         .header('Content-type', 'application/json')
@@ -57,7 +57,7 @@ module.exports = async function (fastify, opts) {
     const id = ObjectId(request.body.user_id)
     const user = await users.findOne({_id : id})
 
-    if(request.headers.Authorization === 'aaa') {
+    if(request.headers.authorization === 'aaa') {
       if(user.user_type === 'Seller') {
         const result = await products.insertOne(request.body)
         reply

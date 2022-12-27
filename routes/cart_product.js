@@ -10,12 +10,23 @@ const {
 
 
 module.exports = async function (fastify, opts) {
-  fastify.get('/cart', async function (request, reply) {
-    const carts = this.mongo.db.collection('cart')
-    const cart_products = this.mongo.db.collection('cart_product')
+  fastify.get('/cart', async function(request, reply) {
+    const cart = this.mongo.db.collection('cart')
+    
+    if(request.headers.user_id){
+      const result = await cart.find({user_id: request.headers.user_id}).toArray()
+      reply
+        .code(200)
+        .header('Content-type', 'application/json')
+        .send(result)
+    }
 
-    const result = await carts.find({}).toArray()
-    reply.send(result)
+    else{
+      reply
+        .code(403)
+        .header('Content-type', 'application/json')
+        .send('Not Found')
+    }
   })
 
   fastify.patch('/cart', async function (request, reply) {
@@ -45,10 +56,8 @@ module.exports = async function (fastify, opts) {
     const carts = this.mongo.db.collection('cart')
     const users = this.mongo.db.collection('users')
 
-    const id = ObjectId(request.body.user_id)
-
     const cart = await carts.findOneAndDelete({
-      _id: id,
+      user_id: request.body.user_id,
       product_id: request.body.product_id
     }).then(result => {
       reply
